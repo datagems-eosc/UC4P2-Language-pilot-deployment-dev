@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dg-uc4p2-language-pilot-config
+  namespace: zhaw
+data:
+  LLM_PROVIDER: scayle
+  LLM_MODEL: qwen3
+  SCAYLE_MODEL_NAME: qwen3
+  SCAYLE_BASE_URL: https://chat.scayle.es/api
+  SCAYLE_VERIFY_SSL: "true"
+  QDMR_BACKEND: dspy
+  QDMR_MODEL_NAME_OR_PATH: ""
+  QUERY_DISAMBIGUATION_URL: http://dg-query-disambiguation:8080
+  CROSS_DATASET_DISCOVERY_URL: https://datagems-dev.scayle.es/cross-dataset-discovery
+  CROSS_DATASET_SEARCH_MODE: hybrid
+  OIDC_TOKEN_URL: https://datagems-dev.scayle.es/oauth/realms/dev/protocol/openid-connect/token
+  OIDC_CLIENT_ID: swagger-client
+  OIDC_SCOPE: openid cross-dataset-discovery-api offline_access
+  OIDC_ISSUER_URL: https://datagems-dev.scayle.es/oauth/realms/dev
+  OIDC_AUDIENCE: swagger-client
+  AUTH_DISABLED: "true"

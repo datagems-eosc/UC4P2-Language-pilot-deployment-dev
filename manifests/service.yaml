@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dg-uc4p2-language-pilot
+  namespace: zhaw
+spec:
+  selector:
+    app: dg-uc4p2-language-pilot
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

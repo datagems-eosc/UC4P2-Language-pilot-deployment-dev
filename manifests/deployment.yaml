@@ -1,0 +1,158 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dg-uc4p2-language-pilot
+  namespace: zhaw
+  labels:
+    app: dg-uc4p2-language-pilot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dg-uc4p2-language-pilot
+  template:
+    metadata:
+      labels:
+        app: dg-uc4p2-language-pilot
+    spec:
+      hostAliases:
+        - ip: "10.98.63.240"
+          hostnames:
+            - datagems-dev.scayle.es
+      imagePullSecrets:
+        - name: ghcr-pull-secret
+      containers:
+        - name: dg-uc4p2-language-pilot
+          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: LLM_PROVIDER
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: LLM_PROVIDER
+            - name: LLM_MODEL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: LLM_MODEL
+            - name: SCAYLE_MODEL_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: SCAYLE_MODEL_NAME
+            - name: SCAYLE_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: SCAYLE_BASE_URL
+            - name: SCAYLE_VERIFY_SSL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: SCAYLE_VERIFY_SSL
+            - name: QDMR_BACKEND
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: QDMR_BACKEND
+            - name: QDMR_MODEL_NAME_OR_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: QDMR_MODEL_NAME_OR_PATH
+            - name: QUERY_DISAMBIGUATION_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: QUERY_DISAMBIGUATION_URL
+            - name: CROSS_DATASET_DISCOVERY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: CROSS_DATASET_DISCOVERY_URL
+            - name: CROSS_DATASET_SEARCH_MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: CROSS_DATASET_SEARCH_MODE
+            - name: OIDC_TOKEN_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: OIDC_TOKEN_URL
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: OIDC_CLIENT_ID
+            - name: OIDC_SCOPE
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: OIDC_SCOPE
+            - name: OIDC_ISSUER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: OIDC_ISSUER_URL
+            - name: OIDC_AUDIENCE
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: OIDC_AUDIENCE
+            - name: AUTH_DISABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: AUTH_DISABLED
+            - name: SCAYLE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: dg-uc4p2-language-pilot-app-secrets
+                  key: SCAYLE_USERNAME
+                  optional: true
+            - name: SCAYLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dg-uc4p2-language-pilot-app-secrets
+                  key: SCAYLE_PASSWORD
+                  optional: true
+            - name: DG_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: dg-uc4p2-language-pilot-app-secrets
+                  key: DG_USERNAME
+                  optional: true
+            - name: DG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dg-uc4p2-language-pilot-app-secrets
+                  key: DG_PASSWORD
+                  optional: true
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: dg-uc4p2-language-pilot-app-secrets
+                  key: OPENAI_API_KEY
+                  optional: true
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "200m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
