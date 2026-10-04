@@ -20,9 +20,9 @@ Mirrors the layout of [dg-query-disambiguation-deployment-dev](https://github.co
 
 1. **Container image** published from [UC4P2-Language-pilot](https://github.com/datagems-eosc/UC4P2-Language-pilot):
    ```bash
-   git tag v0.1.3 && git push origin v0.1.3
+   git tag v0.1.4 && git push origin v0.1.4
    ```
-   Image: `ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.3`
+   Image: `ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.4`
 
 2. **Vault secrets** at path `zhaw/uc4p2-language-pilot` (KV v2):
    - `SCAYLE_USERNAME`
@@ -59,7 +59,7 @@ https://datagems-dev.scayle.es/language-pilot/swagger
 ```
 
 ```bash
-curl -s -X POST "https://datagems-dev.scayle.es/language-pilot/compare" \
+curl -s -X POST "https://datagems-dev.scayle.es/language-pilot/ThematicExploration" \
   -H "Content-Type: application/json" \
   -d '{"query": "How did a marriage look like in the 1800s compared to now?"}'
 ```
@@ -69,7 +69,7 @@ curl -s -X POST "https://datagems-dev.scayle.es/language-pilot/compare" \
 Edit `manifests/deployment.yaml`:
 
 ```yaml
-image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.3
+image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.4
 ```
 
 After changing the ConfigMap:

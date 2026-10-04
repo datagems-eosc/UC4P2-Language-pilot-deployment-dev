@@ -13,10 +13,11 @@ data:
   QDMR_MODEL_NAME_OR_PATH: ""
   QUERY_DISAMBIGUATION_URL: http://dg-query-disambiguation:8080
   CROSS_DATASET_DISCOVERY_URL: https://datagems-dev.scayle.es/cross-dataset-discovery
+  CROSS_DATASET_IDS: 07382b91-5bc5-42f9-8391-33adc2460c19,d84d1a2e-127d-4393-91d0-afb7e4fd9c68,d5c34990-9acf-4349-91d4-924f58565922,1f6fba0c-9aea-4345-b5a3-457c924f9e0c
   CROSS_DATASET_SEARCH_MODE: hybrid
   OIDC_TOKEN_URL: https://datagems-dev.scayle.es/oauth/realms/dev/protocol/openid-connect/token
   OIDC_CLIENT_ID: swagger-client
-  OIDC_SCOPE: openid cross-dataset-discovery-api offline_access
+  OIDC_SCOPE: openid datagems offline_access
   OIDC_ISSUER_URL: https://datagems-dev.scayle.es/oauth/realms/dev
   OIDC_AUDIENCE: swagger-client
   AUTH_DISABLED: "true"
