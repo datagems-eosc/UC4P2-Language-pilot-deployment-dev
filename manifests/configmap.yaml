@@ -20,4 +20,4 @@ data:
   OIDC_SCOPE: openid datagems offline_access
   OIDC_ISSUER_URL: https://datagems-dev.scayle.es/oauth/realms/dev
   OIDC_AUDIENCE: swagger-client
-  AUTH_DISABLED: "true"
+  AUTH_DISABLED: "false"
