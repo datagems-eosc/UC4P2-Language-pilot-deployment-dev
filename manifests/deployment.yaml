@@ -23,7 +23,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: dg-uc4p2-language-pilot
-          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.9
+          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.10
           ports:
             - containerPort: 8080
           env:
@@ -42,6 +42,11 @@ spec:
                 configMapKeyRef:
                   name: dg-uc4p2-language-pilot-config
                   key: SCAYLE_MODEL_NAME
+            - name: JUDGE_LLM_MODEL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: JUDGE_LLM_MODEL
             - name: SCAYLE_BASE_URL
               valueFrom:
                 configMapKeyRef:

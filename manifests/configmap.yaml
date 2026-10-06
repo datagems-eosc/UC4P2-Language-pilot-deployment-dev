@@ -7,6 +7,7 @@ data:
   LLM_PROVIDER: scayle
   LLM_MODEL: qwen3
   SCAYLE_MODEL_NAME: qwen3
+  JUDGE_LLM_MODEL: glm-5.3-flash
   SCAYLE_BASE_URL: https://chat.scayle.es/api
   SCAYLE_VERIFY_SSL: "true"
   QDMR_BACKEND: dspy
