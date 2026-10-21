@@ -70,7 +70,7 @@ curl -s -X POST "https://datagems-dev.scayle.es/language-pilot/ThematicExplorati
 Edit `manifests/deployment.yaml`:
 
 ```yaml
-image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.24
+image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.25
 ```
 
 After changing the ConfigMap:
