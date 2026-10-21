@@ -23,7 +23,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: dg-uc4p2-language-pilot
-          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.24
+          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.25
           ports:
             - containerPort: 8080
           env:
@@ -87,6 +87,16 @@ spec:
                 configMapKeyRef:
                   name: dg-uc4p2-language-pilot-config
                   key: CROSS_DATASET_IDS
+            - name: USE_IN_DATASET_DISCOVERY
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: USE_IN_DATASET_DISCOVERY
+            - name: IN_DATASET_DISCOVERY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dg-uc4p2-language-pilot-config
+                  key: IN_DATASET_DISCOVERY_URL
             - name: OIDC_TOKEN_URL
               valueFrom:
                 configMapKeyRef:
