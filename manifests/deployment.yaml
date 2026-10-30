@@ -23,7 +23,7 @@ spec:
         - name: ghcr-pull-secret
       containers:
         - name: dg-uc4p2-language-pilot
-          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.35
+          image: ghcr.io/datagems-eosc/uc4p2-language-pilot:v0.1.36
           ports:
             - containerPort: 8080
           env:
